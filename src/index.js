@@ -1,36 +1,34 @@
-// <h1>Hello World</h1>
-var React = require('react')
-var ReactDOM = require('react-dom')
+var React = require('react');
+var ReactDOM = require('react-dom');
+var createClass = require('create-react-class'); // npm i -S create-react-class
 
-// var App = React.createElement('h1', null, 'Hello World')
-
-// var App = (
-//     <ul>
-//         <li>Apple</li>
-//         <li>Orange</li>
-//         <li>Mango</li>
-//     </ul>
-// )
-
-var App = <h1>Hello World</h1>
-
-var Component = function() {
-    return (
-      <h1>Hello World</h1>  
-    )
-}
-
-// var Component = () => <h1>Hello World</h1> 
-
-// ReactDOM.render(
-//     App,
-//     document.getElementById('root')
-// )
+var Component = createClass({
+    getInitialState: function() {
+        return {
+            color: "blue"
+        }
+    },
+    handleButtonClick: function() {
+        this.setState(function(prevState) {
+            return {
+                color: (prevState.color === "blue") ? "green" : "blue"
+            }
+        })
+    },
+    render : function() {
+        return (
+            <div>
+                <div style={{color: this.state.color}}>
+                    <h1> {this.props.greeting} </h1>  
+                </div>
+                <button onClick={this.handleButtonClick}>ClickMe</button>
+            </div>
+        )        
+    }
+})
 
 ReactDOM.render(
-    // React.createElement(Component),
-    // Component(),
-    <Component />,
+    <Component greeting='hey there' />,
     document.getElementById('root')
 )
 
