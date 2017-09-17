@@ -1,17 +1,15 @@
 var React = require('react')
-var createClass = require('create-react-class')
 
-
-var Title = createClass({
-    render: function() {
+class Title extends React.Component {
+    render() {
         return (
             <h3>{this.props.showTitle}</h3>
         )
     }
-})
+}
 
-var Poster = createClass({
-    render: function() {
+class Poster extends React.Component {
+    render() {
         return(
             <img 
                 src={this.props.showPoster}
@@ -20,10 +18,10 @@ var Poster = createClass({
             />
         )
     }
-})
+}
 
-var ShowInfo = createClass({
-    render: function() {
+class ShowInfo extends React.Component {
+    render() {
         return (
             <div>
                 <p>
@@ -33,38 +31,43 @@ var ShowInfo = createClass({
             </div>
         )
     }
-})
+}
 
-var Show = createClass({
-    getInitialState: function() {
+class Show extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            showIndex: this.props.showIndex
+        }
+    }
+    static defaultProps = {
+        showIndex: 0
+    }
+    getInitialState() {
         return {
             showIndex: this.props.showIndex
         }
-    },
-    getDefaultProps: function() {
-        return {
-            showIndex: 0
-        }
-    },
-    handleButtonClick: function() {
+    }
+    handleButtonClick() {
         var totalShows = this.props.shows.length;
         this.setState(function(prevState) {
             return {
                 showIndex: (prevState.showIndex + 1) % totalShows
             };
         })
-    },
-    render: function() {
-    var show = this.props.shows[this.state.showIndex]        
+    }
+    render() {
+        var show = this.props.shows[this.state.showIndex]
         return (
             <div className="text-center" >
                 <Title showTitle={show.title} />
                 <Poster showPoster={show.poster} />
                 <ShowInfo showPlot={show.plot} showRating={show.imdbRating} />
-                <button onClick={this.handleButtonClick}>Next Show</button>
+                <button onClick={this.handleButtonClick.bind(this)}>Next Show</button>
             </div>
         )
     }
-})
+}
+
 
 module.exports = Show;
