@@ -33,6 +33,11 @@ Engineer.prototype.getDescription = function() {
     return this.getFullName() + ', ' + this.field + ' Engineer'
 }
 
+Engineer.greeting = function() { 
+    return 'sayHi';
+}
+console.log(Engineer.greeting())
+
 var sam = new Engineer("Sam", "Williams", "Software")
 console.log(sam)
 console.log(sam.getFullName())
@@ -52,9 +57,16 @@ class EmployeeES6 {
 }
 
 class EngineerES6 extends EmployeeES6 {
-    constructor(firstName, lastName, field) {
-        super(firstName, lastName)
-        this.field = field
+    // constructor(firstName, lastName, field) {
+    //     super(firstName, lastName)
+    //     this.field = field
+    // }
+    // constructor(...args) {
+    //     super(...args)
+    // }
+
+    static greeting2() {
+        return 'sayHi_static'
     }
 
     getDescription = function() {
@@ -62,6 +74,12 @@ class EngineerES6 extends EmployeeES6 {
     }
 }
 
+EngineerES6.greeting = function() { 
+    return 'sayHi_es6';
+}
+
+console.log(EngineerES6.greeting())
+console.log(EngineerES6.greeting2())
 
 const sammy = new EngineerES6("Sammy", "Winchester", 'Electronics')
 
