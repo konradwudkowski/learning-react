@@ -16,7 +16,7 @@ var Poster = createClass({
             <img 
                 src={this.props.showPoster}
                 alt="Show Poster"
-                style={{height: 400, width: 400}}
+                style={{height: 300}}
             />
         )
     }
